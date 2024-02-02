@@ -45,11 +45,11 @@ To train a SimVOS model (ViT-Base with MAE Init.) w/ token refinement (e.g., the
 ```
 python -m torch.distributed.launch --master_port 9842 --nproc_per_node=8 train_simvos.py --id retrain_s03 --stage 3
 ```
-If you want to train a SimVOS-base model w/o token refinement:
+If you want to train a SimVOS-B model w/o token refinement:
 ```
 python -m torch.distributed.launch --master_port 9842 --nproc_per_node=2 train_simvos.py --id retrain_s03 --stage 3 --layer_index 0 --use_token_learner False
 ```
-or SimVOS-large model:
+or SimVOS-L model:
 ```
 python -m torch.distributed.launch --master_port 9842 --nproc_per_node=2 train_simvos.py --id retrain_s03 --stage 3 --layer_index 0 --use_token_learner False --backbone_type vit_large
 ```
