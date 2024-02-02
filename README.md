@@ -58,7 +58,8 @@ python -m torch.distributed.launch --master_port 9842 --nproc_per_node=2 train_s
 Download the SimVOS models [SimVOS-BS(384/384-layer_index=4-vitbase)](https://drive.google.com/file/d/1v1FdDc5oFFUOBZ_Oc2yhPxDZpbHpTYsY/view?usp=drive_link), [SimVOS-B(vitbase)](https://drive.google.com/file/d/1v1FdDc5oFFUOBZ_Oc2yhPxDZpbHpTYsY/view?usp=drive_link](https://drive.google.com/file/d/1uSobYg2JQzpR-Lwb81YsUoyjEr1jaTwJ/view?usp=drive_link)), and [SimVOS-L(vitlarge)](https://drive.google.com/file/d/1bh2FyaoRlTdupvCHRiJc9O9vnRhSkcE8/view?usp=drive_link). Put the models in the `test_checkpoints` folder. After taht, run the evaluation w/ the following commands. All evaluations are done in the 480p resolution.
 ```
 #SimVOS-BS
-python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 4 --use_token_learner --backbone_type #SimVOS-B
+python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 4 --use_token_learner --backbone_type vit_base
+#SimVOS-B
 python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 0 --backbone_type vit_base
 #SimVOS-L
 python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 0 --backbone_type vit_large
