@@ -60,7 +60,7 @@ Download the SimVOS models [SimVOS-BS(384/384-layer_index=4-vitbase)](https://dr
 #SimVOS-BS
 python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 4 --use_token_learner --backbone_type #SimVOS-B
 python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 0 --backbone_type vit_base
-SimVOS-L
+#SimVOS-L
 python submit_eval_davis_ours_all.py --model_path ./test_checkpoints --davis_path ./Data/DAVIS/2017 --output ./results --split val --layer_index 0 --backbone_type vit_large
 ```
 
