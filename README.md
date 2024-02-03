@@ -47,11 +47,11 @@ python -m torch.distributed.launch --master_port 9842 --nproc_per_node=8 train_s
 ```
 If you want to train a SimVOS-B model w/o token refinement:
 ```
-python -m torch.distributed.launch --master_port 9842 --nproc_per_node=2 train_simvos.py --id retrain_s03 --stage 3 --layer_index 0 --use_token_learner False
+python -m torch.distributed.launch --master_port 9842 --nproc_per_node=8 train_simvos.py --id retrain_s03 --stage 3 --layer_index 0 --use_token_learner False
 ```
 or SimVOS-L model:
 ```
-python -m torch.distributed.launch --master_port 9842 --nproc_per_node=2 train_simvos.py --id retrain_s03 --stage 3 --layer_index 0 --use_token_learner False --backbone_type vit_large
+python -m torch.distributed.launch --master_port 9842 --nproc_per_node=8 train_simvos.py --id retrain_s03 --stage 3 --layer_index 0 --use_token_learner False --backbone_type vit_large
 ```
 
 ### Evaluation command
