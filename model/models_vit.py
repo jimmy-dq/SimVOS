@@ -309,10 +309,10 @@ class VisionTransformer(timm.models.vision_transformer.VisionTransformer):
             use_window_partition = kwargs['use_window_partition']
             use_token_learner = kwargs['use_token_learner']
             # local attention for feature extraction
-            x = self.patch_embed(frames, is_template=True)    # bs*T, (H//16 * W//16), 768
+            x = self.patch_embed(frames)    # bs*T, (H//16 * W//16), 768
             B, _, H, W = frames.shape
             _, _, C = x.shape
-            mask_tokens   = self.mask_patch_embed(mask_frames, is_template=True)
+            mask_tokens   = self.mask_patch_embed(mask_frames)
             x = x + self.pos_embed_new[:, 1:, :] + mask_tokens
             x = self.pos_drop(x)   #bs, (T+1)*hw, C
 
@@ -353,11 +353,11 @@ class VisionTransformer(timm.models.vision_transformer.VisionTransformer):
             
             memory_frames = memory_frames.flatten(0, 1)
             mask_frames = mask_frames.flatten(0, 1)
-            memory_tokens = self.patch_embed(memory_frames, is_template=True)    # bs*T, (H//16 * W//16), 768
-            mask_tokens   = self.mask_patch_embed(mask_frames, is_template=True) # bs*T, (H//16 * W//16), 768
+            memory_tokens = self.patch_embed(memory_frames)    # bs*T, (H//16 * W//16), 768
+            mask_tokens   = self.mask_patch_embed(mask_frames) # bs*T, (H//16 * W//16), 768
             # add the target-aware positional encoding
             memory_tokens = memory_tokens + mask_tokens
-            query_tokens = self.patch_embed(query_frame, is_template=True) # bs, (H//16 * W//16), 768
+            query_tokens = self.patch_embed(query_frame) # bs, (H//16 * W//16), 768
             
             if T > 1: # multiple memory frames
                 memory_tokens = memory_tokens.view(B, T, -1, memory_tokens.size()[-1]).contiguous() #bs ,T, num, C
@@ -389,7 +389,7 @@ class VisionTransformer(timm.models.vision_transformer.VisionTransformer):
             frames = kwargs['frames']
             layer_index = kwargs['layer_index']
             use_window_partition = kwargs['use_window_partition']
-            x = self.patch_embed(frames, is_template=True)
+            x = self.patch_embed(frames)
             x = x + self.pos_embed_new[:, 1:, :]
             x = self.pos_drop(x)
             
@@ -556,7 +556,7 @@ class VisionTransformer(timm.models.vision_transformer.VisionTransformer):
             return torch.sigmoid(logits)
     
     def forward_patch_embedding(self, x):
-        return self.patch_embed(x, is_template=True)
+        return self.patch_embed(x)
 
     def forward_features_testing(self, x, z):
             B = x.shape[0]
